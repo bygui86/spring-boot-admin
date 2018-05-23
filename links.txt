@@ -1,0 +1,29 @@
+
+---[ Spring Boot Admin - Links ]---
+
+
+---[ Theory
+
+DONE
+-
+
+IN PROGRESS
+http://codecentric.github.io/spring-boot-admin/2.0.0/#getting-started
+
+TODO
+-
+
+
+---[ Frameworks/Platforms
+
+-
+
+
+---[ Code
+
+-
+
+
+---[ Repo
+
+https://github.com/codecentric/spring-boot-admin

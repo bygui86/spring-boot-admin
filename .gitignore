@@ -1,0 +1,71 @@
+
+###################### General ##################
+
+# -
+
+
+
+###################### OS generated #############
+
+########### Mac OS X
+*~
+._*
+__MACOSX
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+### jenv
+.java-version
+
+########### Windows
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+########### Linux
+# -
+
+
+
+###################### IDE configurations #######
+
+########### IntelliJ Idea
+.idea/
+.intellij/
+*.eml
+*.iws
+*.iml
+*.ipr
+out/
+
+########### Eclipse
+.externalToolBuilders/
+.metadata*/
+.recommenders/
+eclipsebin/
+RemoteSystemsTempFiles/
+
+
+
+###################### Build automation tools ###
+
+.gradle/
+.m2/
+
+
+
+###################### Compiler #################
+
+bin/
+build/
+target/
+*.class
+
+
+
+###################### Submodules ###############
+
+submodules/devoxx/clean-architecture/clean-architecture-example/
+submodules/devoxx/clean-architecture/java-clean-architecture/
+submodules/devoxx/clean-architecture/kotlin-clean-architecture/

@@ -1,0 +1,116 @@
+// *** Spring Boot Admin - CLIENT ***
+
+// SCRIPT
+buildscript {
+	ext {
+		springBootVersion = '2.0.2.RELEASE'
+		springBootAdminVersion = '2.0.0'
+		slf4jVersion = '1.7.25'
+		lombokVersion = '1.16.20'
+		aptPluginVersion = '0.4'
+		dockerPluginVersion = '1.2'
+	}
+	
+	repositories {
+		mavenCentral()
+		maven { url 'https://plugins.gradle.org/m2/' }
+	}
+
+	dependencies {
+		classpath group: 'org.springframework.boot', name: 'spring-boot-gradle-plugin', version: "${springBootVersion}"
+		classpath group: 'net.ltgt.gradle', name: 'gradle-apt-plugin', version: "${aptPluginVersion}"
+		classpath group: 'se.transmode.gradle', name: 'gradle-docker', version: "${dockerPluginVersion}"
+	}
+}
+
+
+// PLUGINS
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'net.ltgt.apt'
+apply plugin: 'docker'
+
+
+// COMPILING
+group 'com.rabbitshop'
+version '0.1-snapshot'
+
+jar {
+	baseName = 'springbootadminclient'
+	version = "${version}"
+}
+
+// See https://docs.gradle.org/current/dsl/org.gradle.api.tasks.compile.JavaCompile.html
+compileJava {
+
+	// The Java language level to use to compile the source files.
+	sourceCompatibility = 1.8
+
+	// The target JVM to generate the .class files for.
+	targetCompatibility = 1.8
+
+	// PLEASE NOTE: with the new version of Gradle, Lombok needs Java9+ to compile properly with fork enabled
+	// Enable compilation in a separate daemon process
+	// options.fork = true
+
+	// Enable incremental compilation
+	options.incremental = true
+
+	// Reveal specific warnings during compilation
+	options.compilerArgs << '-Xlint:unchecked' << '-Xlint:deprecation'
+}
+
+
+// REPOS
+repositories {
+	mavenCentral()
+}
+
+
+// DEPENDENCIES
+dependencies {
+
+	// Spring Boot DevTools
+	runtime group: 'org.springframework.boot', name: 'spring-boot-devtools', version: "${springBootVersion}"
+
+	// Spring Web
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
+
+	// Spring Boot Admin - Client
+	compile group: 'de.codecentric', name: 'spring-boot-admin-starter-client', version: "${springBootAdminVersion}"
+
+	// Slf4j
+	compile group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+
+	// Lombok
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
+	annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}"
+}
+
+
+// DEPENDENCY MANAG
+dependencyManagement {
+	imports {
+		// Spring Boot Admin
+		mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
+	}
+}
+
+
+// TASKS
+task wrapper(type: Wrapper) {
+	gradleVersion = '4.7'
+}
+
+task image(type: Docker, dependsOn: build) {
+	push = false
+	applicationName = jar.baseName
+	dockerfile = file('docker/Dockerfile')
+	doFirst {
+		copy {
+			from jar
+			into stageDir
+		}
+	}
+}
