@@ -77,6 +77,12 @@ dependencies {
 	// Spring Web
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: "${springBootVersion}"
 
+	// Spring Security
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: "${springBootVersion}"
+
+	// Spring Actuator
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: "${springBootVersion}"
+
 	// Spring Boot Admin - Client
 	compile group: 'de.codecentric', name: 'spring-boot-admin-starter-client', version: "${springBootAdminVersion}"
 

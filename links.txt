@@ -21,7 +21,7 @@ TODO
 
 ---[ Code
 
--
+https://github.com/codecentric/spring-boot-admin/tree/master/spring-boot-admin-samples/spring-boot-admin-sample-consul/
 
 
 ---[ Repo

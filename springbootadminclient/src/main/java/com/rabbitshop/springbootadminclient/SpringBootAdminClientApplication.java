@@ -1,12 +1,12 @@
-package com.rabbitshop.springbootadmin;
+package com.rabbitshop.springbootadminclient;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootadminApplication {
+public class SpringBootAdminClientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootadminApplication.class, args);
+		SpringApplication.run(SpringBootAdminClientApplication.class, args);
 	}
 }
