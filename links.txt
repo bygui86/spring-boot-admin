@@ -5,13 +5,16 @@
 ---[ Theory
 
 DONE
--
-
-IN PROGRESS
+[spring-boot-admin-2.x]
 http://codecentric.github.io/spring-boot-admin/2.0.0/#getting-started
 
+IN PROGRESS
+https://github.com/joshiste/spring-boot-admin-samples
+
 TODO
--
+[spring-boot-admin-1.x]
+http://www.baeldung.com/spring-boot-admin
+http://www.javainuse.com/spring/boot-admin
 
 
 ---[ Frameworks/Platforms
@@ -21,9 +24,10 @@ TODO
 
 ---[ Code
 
-https://github.com/codecentric/spring-boot-admin/tree/master/spring-boot-admin-samples/spring-boot-admin-sample-consul/
+https://github.com/codecentric/spring-boot-admin/tree/master/spring-boot-admin-samples/
 
 
 ---[ Repo
 
 https://github.com/codecentric/spring-boot-admin
+https://github.com/joshiste/spring-boot-admin-samples
