@@ -1,73 +1,47 @@
 package com.rabbitshop.springbootadminclient.configs;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+
+import java.util.Arrays;
 
 
 @Slf4j
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@Getter(value = AccessLevel.PROTECTED)
 @Configuration
 @EnableAutoConfiguration
 @Profile("secure")
 public class SecureSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private static final String CLIENT_ROLE = "CLIENT";
-
-	@Override
-	protected void configure(final AuthenticationManagerBuilder authManagerBuilder) throws Exception {
-
-		log.debug("Configuring global authentication management...");
-
-		// Client
-		final String username = "client";
-		final String password = "clientsecret";
-
-		log.debug("Setting user role {}, username {}", CLIENT_ROLE, username);
-
-		authManagerBuilder
-				.inMemoryAuthentication()
-				.passwordEncoder(NoOpPasswordEncoder.getInstance()) // TODO: replace with a more secure PasswordEncoder
-				.withUser(username)
-				.password(password)
-				.authorities("ROLE_CLIENT")
-				.roles(CLIENT_ROLE)
-		;
-	}
+	@Value("${spring.security.user.roles}")
+	String[] clientRoles;
 
 	@Override
 	protected void configure(final HttpSecurity httpSecurity) throws Exception {
 
-		log.warn("Loading SECURE config...");
+		log.debug("Loading SECURE config...");
 
-		// httpSecurity.authorizeRequests()
-				// .antMatchers("*/actuator/**").permitAll()
-				// .antMatchers("*/assets/**").permitAll()
-				// .antMatchers("*/login").permitAll()
-				// .anyRequest().authenticated()
-				// .and()
-				// .csrf().disable();
-
-		// httpSecurity.authorizeRequests()
-				// .antMatchers("*/**").permitAll()
-				// .anyRequest().permitAll()
-				// .and()
-				// .csrf().disable();
+		log.warn("Loading roles: {}", Arrays.toString(clientRoles));
 
 		httpSecurity
+
 				.csrf().disable()
 
 				.httpBasic()
-				// .realmName(realmName)
-				// .authenticationEntryPoint(getBasicAuthenticationEntryPoint())
 				.and()
 
 				.authorizeRequests()
-				.antMatchers("*/**").hasAnyRole(CLIENT_ROLE)
+				// PLEASE NOTE: There is no need to expose all urls ("/**") with one role, for Spring Boot Admin the Spring Actuator endpoints are enough
+				.antMatchers("/actuator/**").hasAnyRole(getClientRoles())
 				.anyRequest().authenticated()
 		;
 	}

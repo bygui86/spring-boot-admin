@@ -14,19 +14,19 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Profile("insecure")
 public class InsecureSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	/*
-		PLEASE NOTE: For the sake of brevity we’re disabling the security for now. Have a look at the security section on how to deal with secured endpoints.
-	 */
 	@Override
-	protected void configure(final HttpSecurity http) throws Exception {
+	protected void configure(final HttpSecurity httpSecurity) throws Exception {
 
-		log.warn("Loading INSECURE config...");
+		log.debug("Loading INSECURE config...");
 
-		http
+		httpSecurity
+				.csrf().disable()
+				.httpBasic()
+				.and()
+
 				.authorizeRequests()
 				.anyRequest().permitAll()
-				.and()
-				.csrf().disable();
+		;
 	}
 
 }

@@ -7,14 +7,18 @@
 DONE
 [spring-boot-admin-2.x]
 http://codecentric.github.io/spring-boot-admin/2.0.0/#getting-started
+https://github.com/joshiste/spring-boot-admin-samples
+[spring-boot-admin-1.x]
+http://www.baeldung.com/spring-boot-admin
 
 IN PROGRESS
-https://github.com/joshiste/spring-boot-admin-samples
+[eureka]
+https://piotrminkowski.wordpress.com/2017/06/26/monitoring-microservices-with-spring-boot-admin/
 
 TODO
 [spring-boot-admin-1.x]
-http://www.baeldung.com/spring-boot-admin
 http://www.javainuse.com/spring/boot-admin
+https://dzone.com/articles/a-look-at-spring-boot-admin
 
 
 ---[ Frameworks/Platforms

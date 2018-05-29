@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableAdminServer
 public class SpringBootAdminServerConsulApplication {
 
+	// TODO: still not working properly!
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootAdminServerConsulApplication.class, args);
 	}

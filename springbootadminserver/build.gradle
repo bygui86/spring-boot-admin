@@ -83,6 +83,9 @@ dependencies {
 	// Spring Boot Admin - Server
 	compile group: 'de.codecentric', name: 'spring-boot-admin-starter-server', version: "${springBootAdminVersion}"
 
+	// Spring Mail
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: "${springBootVersion}"
+
 	// Slf4j
 	compile group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
 
