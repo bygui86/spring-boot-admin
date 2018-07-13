@@ -19,9 +19,9 @@ __MACOSX
 .java-version
 
 ########### Windows
+Desktop.ini
 ehthumbs.db
 Thumbs.db
-Desktop.ini
 
 ########### Linux
 # -
@@ -46,6 +46,9 @@ out/
 eclipsebin/
 RemoteSystemsTempFiles/
 
+########### Visual Studio Code
+*.code-workspace
+
 
 
 ###################### Build automation tools ###
@@ -61,11 +64,3 @@ bin/
 build/
 target/
 *.class
-
-
-
-###################### Submodules ###############
-
-submodules/devoxx/clean-architecture/clean-architecture-example/
-submodules/devoxx/clean-architecture/java-clean-architecture/
-submodules/devoxx/clean-architecture/kotlin-clean-architecture/
